@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 
-from .extensions import pdb
-from .models import Phone
+from extensions import pdb
+from models import Phone
 
 bp = Blueprint('inventory', __name__, url_prefix='/inventory')
 

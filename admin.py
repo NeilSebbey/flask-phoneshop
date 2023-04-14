@@ -1,9 +1,8 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-from flask_sqlalchemy import SQLAlchemy
 
-from phoneshop.auth import login_required
-from .extensions import pdb
-from .models import Phone
+from auth import login_required
+from extensions import pdb
+from models import Phone
 
 bp = Blueprint('admin', __name__, url_prefix='/admin')
 

@@ -1,4 +1,4 @@
-from .extensions import pdb
+from extensions import pdb
 
 
 class Phone(pdb.Model):
