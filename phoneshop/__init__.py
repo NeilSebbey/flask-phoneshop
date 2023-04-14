@@ -10,7 +10,7 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'phoneshop.sqlite'),
+
     )
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://mtu:mtu2021kerry@phone-shop-db-1.cmeabezboyem.us-east-1.rds.amazonaws.com:5432/phoneshop'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
