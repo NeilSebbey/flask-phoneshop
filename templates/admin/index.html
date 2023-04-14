@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% block title %} Manage Phones {% endblock %}
+
+{% block body %}
+    <div class="container mt-4 m-8">
+        <h2>Manage Phones</h2>
+        <br>
+
+        <a href="{{ url_for('admin.insert_phone') }}" class="btn btn-primary">Add Phone</a>
+        <br>
+        <hr>
+
+        <table class="table table-success table-striped table-hover table-responsive" border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Model</th>
+                    <th>Brand</th>
+                    <th>Storage</th>
+                    <th>Colour</th>
+                    <th>Network</th>
+                    <th>Operating System</th>
+                    <th>Condition</th>
+                    <th>Price</th>
+                    <th>S3 Image URL</th>
+                    <th colspan="2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for phone in phones %}
+                    <tr>
+                        <td>{{phone.id}}</td>
+                        <td>{{phone.model}}</td>
+                        <td>{{phone.brand}}</td>
+                        <td>{{phone.storage}}</td>
+                        <td>{{phone.colour}}</td>
+                        <td>{{phone.network}}</td>
+                        <td>{{phone.os}}</td>
+                        <td>{{phone.condition}}</td>
+                        <td>{{phone.price}}</td>
+                        <td>{{phone.s3img}}</td>
+                        <td>
+                            <a href="/admin/update/{{phone.id}}" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modaledit{{phone.id}}">Update</a>
+                            <a href="/admin/delete/{{phone.id}}" class="btn btn-danger" onclick="return confirm('Are you sure to delete ?')">Delete</a>
+                        </td>
+                    </tr>
+
+                <!-- update modal -->
+                <div id="modaledit{{phone.id}}" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Update Phone</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{url_for('admin.update')}}" method="POST">
+                                    <div class="form-group">
+                                        <label>Model:</label>
+                                        <input type="hidden"  name="id" value="{{phone.id}}">
+                                        <input type="text" class="form-control" name="model" value="{{phone.model}}" >
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label>Brand:</label>
+                                      <input type="text" class="form-control" name="brand" value="{{phone.brand}}">
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label>Storage:</label>
+                                      <select class="form-control" name="storage" value="{{phone.storage}}">
+                                        <option>Less than 1GB</option>
+                                        <option>64GB</option>
+                                        <option>128GB</option>
+                                        <option>256GB</option>
+                                        <option>512GB</option>
+                                        <option>1TB</option>
+                                      </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label>Color:</label>
+                                      <input type="text" class="form-control" name="colour" value="{{phone.colour}}">
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label>Network:</label>
+                                      <select class="form-control" name="network" value="{{phone.network}}">
+                                        <option>Eir</option>
+                                        <option>Three</option>
+                                        <option>Vodafone</option>
+                                        <option>Unlocked</option>
+                                      </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label>Operating System:</label>
+                                      <select class="form-control" name="os" value="{{phone.os}}">
+                                        <option>Android</option>
+                                        <option>iOS</option>
+                                        <option>Other</option>
+                                      </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label>Condition:</label>
+                                      <select class="form-control" name="condition" value="{{phone.condition}}">
+                                        <option>Brand New</option>
+                                        <option>Refurbished A</option>
+                                        <option>Refurbished B</option>
+                                      </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label>Price:</label>
+                                      <input type="number" class="form-control" name="price" value="{{phone.price}}">
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label>S3 Image URL:</label>
+                                      <input type="text" class="form-control" name="s3img" value="{{phone.s3img}}">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button class="btn btn-primary mt-4" type="submit">Update</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

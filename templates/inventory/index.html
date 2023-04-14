@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block body %}
+    <div class="container mt-4 m-8">
+        <h2>View Inventory</h2>
+        <br>
+
+        <div class="position-relative text-center">
+            <p class="absolute fs-6 text-secondary">
+                At Fonexpert, we provide a wide variety of mobile phones in stock from major brands such as Apple and
+                Samsung, as well as other brands including Google Pixel, OnePlus, Xiaomi and more. Whether you prefer
+                Android or iOS, we can help you choose the right model that suits your needs. And if you are on the
+                fence between the two smartphone operating systems on the market, we are here to help you switch
+                between the two and keep your contacts, messages, media files and other data with you.
+                <br><br>
+                In addition to our range of smartphones, we also sell basic mobile phones if you need a minimal phone
+                to leave out the distractions and keep yourself focused. Basic mobile phones are a great choice as a
+                secondary phone alongside your smartphone, where you can stay connected even if your smartphone runs
+                out of battery.
+            </p>
+            <hr>
+            <h1 class="absolute fs-1 text-primary">
+                Brands
+            </h1>
+
+            <!-- Brands Grid -->
+            <div class="d-flex justify-content-center row row-sm">
+                <div class="col-sm-3 mb-4">
+                    <div class="card h-100">
+                        <a href="{{url_for('inventory.apple_phones')}}"><img class="card-img-top img-fluid m-16 p-16" src="https://mtuie-kc4-images.s3.amazonaws.com/images/logos/Apple_Logo.png" alt="Apple logo"
+                        style="max-width:200px; height:auto;"></a>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="{{url_for('inventory.apple_phones')}}">Apple</a>
+                            </h4>
+                            <p class="card-text">
+                                Advanced camera systems. Lightning-fast performance with Apple's power-efficient chips.
+                                Durable designs and long lasting battery life. Explore the iPhone range.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 mb-4">
+                    <div class="card h-100">
+                        <a href="{{url_for('inventory.samsung_phones')}}"><img class="card-img-top img-fluid m-16 p-16" src="https://mtuie-kc4-images.s3.amazonaws.com/images/logos/Samsung_Logo.png" alt="Samsung logo"
+                        style="max-width:200px; height:auto;"></a>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="{{url_for('inventory.samsung_phones')}}">Samsung</a>
+                            </h4>
+                            <p class="card-text">
+                                Amazing mobile experiences starts here with the Samsung Galaxy lineup. From the Awesome
+                                range of value smartphones to the Serious powerhouse phones to the Zero compromises of
+                                foldable phones, Samsung has you covered.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %} Apple Phones {% endblock %}
+
+{% block body %}
+    <div class="container mt-4 m-8">
+        <h2>View Inventory</h2>
+        <br>
+
+        <div class="position-relative text-center">
+            <h1 class="absolute fs-1 text-primary">
+            Brand: Apple
+            </h1>
+            <p class="absolute fs-6 text-secondary">
+                iPhone is one of the most sought after smartphones on the market with few models released annually by
+                Apple, when compared to most other smartphone brands. Apple makes choosing the perfect iPhone easier
+                for you, from the iPhone SE being its cheapest model when bought brand new to the base models of the
+                flagship iPhone series such as the iPhone 11, iPhone 12 mini, iPhone 13 and iPhone 14 Plus to the high-end
+                (Pro) models of the flagship series such as the iPhone 12 Pro Max, iPhone 13 Pro and iPhone 14 Pro Max.
+            </p>
+            <hr>
+
+            <!-- Models Grid -->
+            <div class="d-flex justify-content-center row row-sm">
+                <!-- For loop to query all iPhones -->
+                {% for iphone in apple %}
+                <div class="col-sm-3 mb-4">
+                    <div class="card h-100">
+                        <a href="#"><img class="card-img-top img-fluid m-16 p-16" src="{{iphone.s3img}}"
+                        style="max-width:200px; height:auto;"></a>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#">{{iphone.model}}</a>
+                            </h4>
+                            <p class="card-text text-left">
+                                <li>Brand: {{iphone.brand}}</li>
+                                <li>Storage: {{iphone.storage}}</li>
+                                <li>Colour: {{iphone.colour}}</li>
+                                <li>Network: {{iphone.network}}</li>
+                                <li>OS: {{iphone.os}}</li>
+                                <li>Condition: {{iphone.condition}}</li>
+                                <li>Price: €{{iphone.price}}</li>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <!-- End of for-loop -->
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}

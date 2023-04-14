@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %} Samsung Phones {% endblock %}
+
+{% block body %}
+    <div class="container mt-4 m-8">
+        <h2>View Inventory</h2>
+        <br>
+
+        <div class="position-relative text-center">
+            <h1 class="absolute fs-1 text-primary">
+            Brand: Samsung
+            </h1>
+            <p class="absolute fs-6 text-secondary">
+                The Samsung Galaxy range provides a wide variety of phone models that suit our customer's budget needs.
+                Whether you just need the essentials without the bells and whistles of Samsung's flagship models with the
+                Galaxy A series, experience the amazing, high-performance mobile experiences with the Galaxy S series, or
+                you find the regular smartphone form factor boring and want to try something new with the Galaxy Z series
+                of foldables, Samsung has you covered.
+            </p>
+            <hr>
+
+            <!-- Models Grid -->
+            <div class="d-flex justify-content-center row row-sm">
+                <!-- For loop to query all Samsung -->
+                {% for phone in samsung %}
+                <div class="col-sm-3 mb-4">
+                    <div class="card h-100">
+                        <a href="#"><img class="card-img-top img-fluid m-16 p-16" src="{{phone.s3img}}"
+                        style="max-width:200px; height:auto;"></a>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#">{{phone.model}}</a>
+                            </h4>
+                            <p class="card-text text-left">
+                                <li>Brand: {{phone.brand}}</li>
+                                <li>Storage: {{phone.storage}}</li>
+                                <li>Colour: {{phone.colour}}</li>
+                                <li>Network: {{phone.network}}</li>
+                                <li>OS: {{phone.os}}</li>
+                                <li>Condition: {{phone.condition}}</li>
+                                <li>Price: €{{phone.price}}</li>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <!-- End of for-loop -->
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}
