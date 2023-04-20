@@ -1,14 +1,15 @@
 from flask import Blueprint, render_template
 
 from extensions import pdb
-from models import Phone
+from models import Phone, Brands
 
 bp = Blueprint('inventory', __name__, url_prefix='/inventory')
 
 
 @bp.route('/')
 def index():
-    return render_template('inventory/index.html')
+    brands = Brands.query.all()
+    return render_template('inventory/index.html', brands=brands)
 
 
 @bp.route('/brands/apple')

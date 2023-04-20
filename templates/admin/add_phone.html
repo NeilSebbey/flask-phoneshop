@@ -22,7 +22,7 @@
             <label class="col-sm-2 col-form-label">Storage</label>
             <div class="col-sm-10">
                 <select class="form-control" name="storage" required>
-                  <option>Less than 1GB</option>
+                  <option>Under 1GB</option>
                   <option>64GB</option>
                   <option>128GB</option>
                   <option>256GB</option>
@@ -80,7 +80,9 @@
                 <input type="text" class="form-control" name="s3img">
             </div>
         </div>
-          <button class="btn btn-primary mt-4" type="submit" value="Register">Add</button>
+        <div class="form-group row">
+            <button class="btn btn-primary mt-4" type="submit" value="Add">Add</button>
+        </div>
       </form>
     </div>
 {% endblock %}

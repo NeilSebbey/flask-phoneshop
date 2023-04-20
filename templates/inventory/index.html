@@ -27,37 +27,22 @@
 
             <!-- Brands Grid -->
             <div class="d-flex justify-content-center row row-sm">
+                {% for brand in brands %}
                 <div class="col-sm-3 mb-4">
                     <div class="card h-100">
-                        <a href="{{url_for('inventory.apple_phones')}}"><img class="card-img-top img-fluid m-16 p-16" src="https://mtuie-kc4-images.s3.amazonaws.com/images/logos/Apple_Logo.png" alt="Apple logo"
+                        <a href="{{brand.flask_href}}"><img class="card-img-top img-fluid m-16 p-16" src="{{brand.s3_logo_url}}" alt="{{brand.brand}} logo"
                         style="max-width:200px; height:auto;"></a>
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="{{url_for('inventory.apple_phones')}}">Apple</a>
+                                <a href="{{brand.flask_href}}">{{brand.brand}}</a>
                             </h4>
                             <p class="card-text">
-                                Advanced camera systems. Lightning-fast performance with Apple's power-efficient chips.
-                                Durable designs and long lasting battery life. Explore the iPhone range.
+                                {{brand.description}}
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3 mb-4">
-                    <div class="card h-100">
-                        <a href="{{url_for('inventory.samsung_phones')}}"><img class="card-img-top img-fluid m-16 p-16" src="https://mtuie-kc4-images.s3.amazonaws.com/images/logos/Samsung_Logo.png" alt="Samsung logo"
-                        style="max-width:200px; height:auto;"></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="{{url_for('inventory.samsung_phones')}}">Samsung</a>
-                            </h4>
-                            <p class="card-text">
-                                Amazing mobile experiences starts here with the Samsung Galaxy lineup. From the Awesome
-                                range of value smartphones to the Serious powerhouse phones to the Zero compromises of
-                                foldable phones, Samsung has you covered.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
 

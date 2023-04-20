@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %} Manage Phones {% endblock %}
+{% block title %} Manage Inventory {% endblock %}
 
 {% block body %}
+    <!-- Manage Phones -->
     <div class="container mt-4 m-8">
         <h2>Manage Phones</h2>
         <br>
@@ -41,20 +42,30 @@
                         <td>{{phone.price}}</td>
                         <td>{{phone.s3img}}</td>
                         <td>
-                            <a href="/admin/update/{{phone.id}}" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modaledit{{phone.id}}">Update</a>
-                            <a href="/admin/delete/{{phone.id}}" class="btn btn-danger" onclick="return confirm('Are you sure to delete ?')">Delete</a>
+                            <a href="/admin/update_phone/{{phone.id}}" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modaleditphone{{phone.id}}">Update</a>
+                            <a href="/admin/delete_phone/{{phone.id}}" class="btn btn-danger" onclick="return confirm('Are you sure to delete ?')">Delete</a>
                         </td>
                     </tr>
 
+                <!----------------------------------------------------
+                -    Title:  navbar.html, lines 21-65
+                -    Author: Parwiz Forogh
+                -    Site owner/sponsor:  github.com
+                -    Date: 05/08/2011 08:38:29
+                -    Code version:  6beef35b50fca17d2ad2f84e7de042c7c396c712
+                -    Availability:  https://github.com/parwiz123/flaskaws/blob/main/templates/navbar.html
+                (Accessed 20 March 2023)
+                -    Modified:  Code refactored (Identifiers renamed)
+                ---------------------------------------------------->
                 <!-- update modal -->
-                <div id="modaledit{{phone.id}}" class="modal fade" role="dialog">
+                <div id="modaleditphone{{phone.id}}" class="modal fade" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h4 class="modal-title">Update Phone</h4>
                             </div>
                             <div class="modal-body">
-                                <form action="{{url_for('admin.update')}}" method="POST">
+                                <form action="{{url_for('admin.update_phone')}}" method="POST">
                                     <div class="form-group">
                                         <label>Model:</label>
                                         <input type="hidden"  name="id" value="{{phone.id}}">
@@ -69,7 +80,7 @@
                                     <div class="form-group">
                                       <label>Storage:</label>
                                       <select class="form-control" name="storage" value="{{phone.storage}}">
-                                        <option>Less than 1GB</option>
+                                        <option>Under 1GB</option>
                                         <option>64GB</option>
                                         <option>128GB</option>
                                         <option>256GB</option>
@@ -119,6 +130,86 @@
                                     <div class="form-group">
                                       <label>S3 Image URL:</label>
                                       <input type="text" class="form-control" name="s3img" value="{{phone.s3img}}">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button class="btn btn-primary mt-4" type="submit">Update</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Manage Brands for logos stored on S3 / CloudFront -->
+    <div class="container mt-4 m-8">
+        <h2>Manage Brands</h2>
+        <br>
+
+        <a href="{{ url_for('admin.insert_brand') }}" class="btn btn-primary">Add Brand</a>
+        <br>
+        <hr>
+
+        <table class="table table-success table-striped table-hover table-responsive" border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Brand</th>
+                    <th>Description</th>
+                    <th>S3 Logo URL</th>
+                    <th>Flask href</th>
+                    <th colspan="2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for brand in brands %}
+                    <tr>
+                        <td>{{brand.id}}</td>
+                        <td>{{brand.brand}}</td>
+                        <td>{{brand.description}}</td>
+                        <td>{{brand.s3_logo_url}}</td>
+                        <td>{{brand.flask_href}}</td>
+                        <td>
+                            <a href="/admin/update_brand/{{brand.id}}" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modaleditbrand{{brand.id}}">Update</a>
+                            <a href="/admin/delete_brand/{{brand.id}}" class="btn btn-danger" onclick="return confirm('Are you sure to delete ?')">Delete</a>
+                        </td>
+                    </tr>
+
+                <!-- update modal -->
+                <div id="modaleditbrand{{brand.id}}" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Update Brand</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{url_for('admin.update_brand')}}" method="POST">
+                                    <div class="form-group">
+                                        <label>Brand:</label>
+                                        <input type="hidden"  name="id" value="{{brand.id}}">
+                                        <input type="text" class="form-control" name="brand" value="{{brand.brand}}" >
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label>Description:</label>
+                                      <textarea class="form-control" name="description" rows="3" value="{{brand.description}}">{{brand.description}}</textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label>S3 Logo URL:</label>
+                                      <input type="text" class="form-control" name="s3_logo_url" value="{{brand.s3_logo_url}}">
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label>Flask href:</label>
+                                      <input type="text" class="form-control" name="flask_href" value="{{brand.flask_href}}">
                                     </div>
 
                                     <div class="form-group">

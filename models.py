@@ -12,3 +12,11 @@ class Phone(pdb.Model):
     condition = pdb.Column(pdb.String(20), nullable=False)
     price = pdb.Column(pdb.Float)
     s3img = pdb.Column(pdb.String(100))
+
+
+class Brands(pdb.Model):
+    id = pdb.Column(pdb.Integer, primary_key=True)
+    brand = pdb.Column(pdb.String(20), nullable=False)
+    description = pdb.Column(pdb.String(500), nullable=False)
+    s3_logo_url = pdb.Column(pdb.String(100))
+    flask_href = pdb.Column(pdb.String(100))
