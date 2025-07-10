@@ -1,3 +1,5 @@
 /instance/
 .DS_Store
 /.idea/
+/venv/
+/__pychache/
