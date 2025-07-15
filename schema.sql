@@ -8,6 +8,6 @@ CREATE TABLE IF NOT EXISTS brands (
   id serial PRIMARY KEY,
   brand VARCHAR(20),
   description VARCHAR(500),
-  s3_logo_url VARCHAR(100),
+  static_logo_url VARCHAR(100),
   flask_href VARCHAR(100)
 );

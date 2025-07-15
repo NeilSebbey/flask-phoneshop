@@ -24,7 +24,7 @@
                     <th>Operating System</th>
                     <th>Condition</th>
                     <th>Price</th>
-                    <th>S3 Image URL</th>
+                    <th>Static Image URL</th>
                     <th colspan="2">Actions</th>
                 </tr>
             </thead>
@@ -40,7 +40,7 @@
                         <td>{{phone.os}}</td>
                         <td>{{phone.condition}}</td>
                         <td>{{phone.price}}</td>
-                        <td>{{phone.s3img}}</td>
+                        <td>{{phone.staticimg}}</td>
                         <td>
                             <a href="/admin/update_phone/{{phone.id}}" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modaleditphone{{phone.id}}">Update</a>
                             <a href="/admin/delete_phone/{{phone.id}}" class="btn btn-danger" onclick="return confirm('Are you sure to delete ?')">Delete</a>
@@ -128,8 +128,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                      <label>S3 Image URL:</label>
-                                      <input type="text" class="form-control" name="s3img" value="{{phone.s3img}}">
+                                      <label>Static Image URL:</label>
+                                      <input type="text" class="form-control" name="staticimg" value="{{phone.staticimg}}">
                                     </div>
 
                                     <div class="form-group">
@@ -148,7 +148,7 @@
         </table>
     </div>
 
-    <!-- Manage Brands for logos stored on S3 / CloudFront -->
+    <!-- Manage Brands for logos stored on static resources (including S3/CloudFront) -->
     <div class="container mt-4 m-8">
         <h2>Manage Brands</h2>
         <br>
@@ -163,7 +163,7 @@
                     <th>ID</th>
                     <th>Brand</th>
                     <th>Description</th>
-                    <th>S3 Logo URL</th>
+                    <th>Static Logo URL</th>
                     <th>Flask href</th>
                     <th colspan="2">Actions</th>
                 </tr>
@@ -174,7 +174,7 @@
                         <td>{{brand.id}}</td>
                         <td>{{brand.brand}}</td>
                         <td>{{brand.description}}</td>
-                        <td>{{brand.s3_logo_url}}</td>
+                        <td>{{brand.static_logo_url}}</td>
                         <td>{{brand.flask_href}}</td>
                         <td>
                             <a href="/admin/update_brand/{{brand.id}}" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modaleditbrand{{brand.id}}">Update</a>
@@ -203,8 +203,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                      <label>S3 Logo URL:</label>
-                                      <input type="text" class="form-control" name="s3_logo_url" value="{{brand.s3_logo_url}}">
+                                      <label>Static Logo URL:</label>
+                                      <input type="text" class="form-control" name="static_logo_url" value="{{brand.static_logo_url}}">
                                     </div>
 
                                     <div class="form-group">

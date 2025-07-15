@@ -1,17 +1,22 @@
 import os
-
 from flask import Flask
 from extensions import pdb
 
-# pdb instead of db
+# environmental variables for DB connection and secrets
+DATABASE_HOST = os.getenv('DATABASE_HOST')
+DATABASE_USERNAME = os.getenv('DATABASE_USERNAME')
+DATABASE_PASSWORD = os.getenv('DATABASE_PASSWORD')
+DATABASE_PORT = os.getenv('DATABASE_PORT')
+DATABASE_NAME = os.getenv('DATABASE_NAME')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # create and configure the app
 app = Flask(__name__)
 
-app.config[
-    'SQLALCHEMY_DATABASE_URI'] = 'postgresql://mtu:mtu2021kerry@phone-shop-db-1.cmeabezboyem.us-east-1.rds.amazonaws.com:5432/phoneshop'
+app.config['SQLALCHEMY_DATABASE_URI'] = ('postgresql://' + DATABASE_USERNAME + ':' + DATABASE_PASSWORD +
+                                         '@' + DATABASE_HOST + ':' + DATABASE_PORT + '/' + DATABASE_NAME)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.secret_key = "somethingunique"
+app.secret_key = SECRET_KEY
 
 pdb.init_app(app)
 

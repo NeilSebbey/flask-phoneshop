@@ -38,7 +38,7 @@ def insert_phone():
             os=request.form.get('os'),
             condition=request.form.get('condition'),
             price=request.form.get('price'),
-            s3img=request.form.get('s3img'),
+            staticimg=request.form.get('staticimg'),
         )
         pdb.session.add(phone)
         pdb.session.commit()
@@ -55,7 +55,7 @@ def insert_brand():
         brand = Brands(
             brand=request.form.get('brand'),
             description=request.form.get('description'),
-            s3_logo_url=request.form.get('s3_logo_url'),
+            static_logo_url=request.form.get('static_logo_url'),
             flask_href=request.form.get('flask_href'),
         )
         pdb.session.add(brand)
@@ -80,7 +80,7 @@ def update_phone():
         my_data.os = request.form['os']
         my_data.condition = request.form['condition']
         my_data.price = request.form['price']
-        my_data.s3img = request.form['s3img']
+        my_data.staticimg = request.form['staticimg']
 
         pdb.session.commit()
         flash("Phone is updated")
@@ -95,7 +95,7 @@ def update_brand():
 
         my_data.brand = request.form['brand']
         my_data.description = request.form['description']
-        my_data.s3_logo_url = request.form['s3_logo_url']
+        my_data.static_logo_url = request.form['static_logo_url']
         my_data.flask_href = request.form['flask_href']
 
         pdb.session.commit()

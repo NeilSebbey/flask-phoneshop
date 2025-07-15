@@ -1,13 +1,14 @@
 import psycopg2
 import click
+import os
 from flask import current_app, g
 from sqlalchemy.testing import db
 
-DATABASE_HOST = 'phone-shop-db-1.cmeabezboyem.us-east-1.rds.amazonaws.com'
-DATABASE_USERNAME = 'mtu'
-DATABASE_PASSWORD = 'mtu2021kerry'
-DATABASE_PORT = '5432'
-DATABASE_NAME = 'phoneshop'
+DATABASE_HOST = os.getenv('DATABASE_HOST')
+DATABASE_USERNAME = os.getenv('DATABASE_USERNAME')
+DATABASE_PASSWORD = os.getenv('DATABASE_PASSWORD')
+DATABASE_PORT = os.getenv('DATABASE_PORT')
+DATABASE_NAME = os.getenv('DATABASE_NAME')
 
 
 def get_db():
