@@ -27,13 +27,13 @@ def register():
             db = get_db()
             cur = db.cursor()
             cur.execute(
-                'SELECT id FROM users WHERE username = %s', (username,))
+                'SELECT id FROM fonexpert.users WHERE username = %s', (username,))
             if cur.fetchone() is not None:
                 error = 'User {} is already registered.'.format(username)
 
         if error is None:
             cur.execute(
-                'INSERT INTO users (username, password) VALUES (%s, %s)',
+                'INSERT INTO fonexpert.users (username, password) VALUES (%s, %s)',
                 (username, generate_password_hash(password))
             )
             db.commit()
@@ -57,7 +57,7 @@ def login():
         cur = db.cursor()
         error = None
 
-        cur.execute('SELECT * FROM users WHERE username = ''%s''', (username,))
+        cur.execute('SELECT * FROM fonexpert.users WHERE username = ''%s''', (username,))
         user = cur.fetchone()
 
         if user is None:
@@ -84,7 +84,7 @@ def load_logged_in_user():
     else:
         g_db = get_db()
         g_cur = g_db.cursor()
-        g_cur.execute('SELECT * FROM users WHERE id = ''%s''', (user_id,))
+        g_cur.execute('SELECT * FROM fonexpert.users WHERE id = ''%s''', (user_id,))
         g.user = g_cur.fetchone()
 
 
