@@ -20,6 +20,10 @@ app.config['SQLALCHEMY_DATABASE_URI'] = ('postgresql://' + DATABASE_USERNAME + '
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
+@app.context_processor
+def inject_cdn_url():
+    return dict(CDN_URL=CDN_URL)
+
 pdb.init_app(app)
 
 # ensure the instance folder exists
