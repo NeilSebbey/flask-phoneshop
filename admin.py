@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+import os
+from flask import Blueprint, render_template, request, redirect, url_for, flash, abort
 
 from auth import login_required
 from extensions import pdb
@@ -28,6 +29,9 @@ def index():
 @bp.route('/add_phone/', methods=['GET', 'POST'])
 @login_required
 def insert_phone():
+    if os.getenv("FLASK_ENV") != "development":
+        abort(403, description="CRUD additions are disabled for this demo app.")
+
     if request.method == "POST":
         phone = Phone(
             model=request.form.get('model'),
@@ -51,6 +55,9 @@ def insert_phone():
 @bp.route('/add_brand/', methods=['GET', 'POST'])
 @login_required
 def insert_brand():
+    if os.getenv("FLASK_ENV") != "development":
+        abort(403, description="CRUD additions are disabled for this demo app.")
+
     if request.method == "POST":
         brand = Brands(
             brand=request.form.get('brand'),
@@ -69,6 +76,9 @@ def insert_brand():
 @bp.route('/update_phone/', methods=['POST'])
 @login_required
 def update_phone():
+    if os.getenv("FLASK_ENV") != "development":
+        abort(403, description="CRUD updates are disabled for this demo app.")
+
     if request.method == "POST":
         my_data = Phone.query.get(request.form.get('id'))
 
@@ -90,6 +100,9 @@ def update_phone():
 @bp.route('/update_brand/', methods=['POST'])
 @login_required
 def update_brand():
+    if os.getenv("FLASK_ENV") != "development":
+        abort(403, description="CRUD updates are disabled for this demo app.")
+
     if request.method == "POST":
         my_data = Brands.query.get(request.form.get('id'))
 
@@ -106,6 +119,9 @@ def update_brand():
 @bp.route('/delete_phone/<id>/', methods=['GET', 'POST'])
 @login_required
 def delete_phone(id):
+    if os.getenv("FLASK_ENV") != "development":
+        abort(403, description="CRUD deletions are disabled for this demo app.")
+
     my_data = Phone.query.get(id)
     pdb.session.delete(my_data)
     pdb.session.commit()
@@ -116,6 +132,9 @@ def delete_phone(id):
 @bp.route('/delete_brand/<id>/', methods=['GET', 'POST'])
 @login_required
 def delete_brand(id):
+    if os.getenv("FLASK_ENV") != "development":
+        abort(403, description="CRUD deletions are disabled for this demo app.")
+
     my_data = Brands.query.get(id)
     pdb.session.delete(my_data)
     pdb.session.commit()
