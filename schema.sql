@@ -9,9 +9,9 @@ CREATE TABLE IF NOT EXISTS fonexpert.phone (
   model VARCHAR(30),
   brand VARCHAR(20),
   storage VARCHAR(10),
-  colour VARCHAR(10),
-  network VARCHAR(10),
-  os VARCHAR(10),
+  colour VARCHAR(20),
+  network VARCHAR(20),
+  os VARCHAR(20),
   condition VARCHAR(20),
   price FLOAT,
   staticimg VARCHAR(200)
