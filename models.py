@@ -3,8 +3,8 @@ from extensions import pdb
 
 class Phone(pdb.Model):
     # a specific schema
-    __tablename__ = 'phone'
-    __table_args__ = {'schema': 'fonexpert'}
+    __tablename__ = 'phones'
+    __table_args__ = {'schema': 'items'}
 
     id = pdb.Column(pdb.Integer, primary_key=True)
     model = pdb.Column(pdb.String(30), nullable=False)
@@ -21,7 +21,7 @@ class Phone(pdb.Model):
 class Brands(pdb.Model):
     # a specific schema
     __tablename__ = 'brands'
-    __table_args__ = {'schema': 'fonexpert'}
+    __table_args__ = {'schema': 'items'}
 
     id = pdb.Column(pdb.Integer, primary_key=True)
     brand = pdb.Column(pdb.String(20), nullable=False)

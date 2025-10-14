@@ -1,10 +1,13 @@
+CREATE SCHEMA IF NOT EXISTS sys;
+CREATE SCHEMA IF NOT EXISTS items;
+
 CREATE TABLE IF NOT EXISTS users (
   id serial PRIMARY KEY,
   username VARCHAR(255),
   password VARCHAR(255)
 );
 
-CREATE TABLE IF NOT EXISTS fonexpert.phone (
+CREATE TABLE IF NOT EXISTS items.phones (
   id serial PRIMARY KEY,
   model VARCHAR(30),
   brand VARCHAR(20),
@@ -17,7 +20,7 @@ CREATE TABLE IF NOT EXISTS fonexpert.phone (
   staticimg VARCHAR(200)
 );
 
-CREATE TABLE IF NOT EXISTS brands (
+CREATE TABLE IF NOT EXISTS items.brands (
   id serial PRIMARY KEY,
   brand VARCHAR(20),
   description VARCHAR(500),
