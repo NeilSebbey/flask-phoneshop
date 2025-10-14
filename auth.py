@@ -1,7 +1,8 @@
 import functools
+import os
 
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for
+    Blueprint, flash, g, redirect, render_template, request, session, url_for, abort
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -12,6 +13,9 @@ bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
+    if os.getenv("FLASK_ENV") != "development":
+        abort(403, description="Registration is disabled for this demo app.")
+
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
