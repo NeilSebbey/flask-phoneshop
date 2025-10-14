@@ -9,6 +9,7 @@ DATABASE_USERNAME = os.getenv('DATABASE_USERNAME')
 DATABASE_PASSWORD = os.getenv('DATABASE_PASSWORD')
 DATABASE_PORT = os.getenv('DATABASE_PORT')
 DATABASE_NAME = os.getenv('DATABASE_NAME')
+DATABASE_SSLMODE = os.getenv('DATABASE_SSLMODE')
 
 
 def get_db():
@@ -18,7 +19,8 @@ def get_db():
             user=DATABASE_USERNAME,
             password=DATABASE_PASSWORD,
             port=DATABASE_PORT,
-            dbname=DATABASE_NAME
+            dbname=DATABASE_NAME,
+            sslmode=DATABASE_SSLMODE
         )
     return g.db
 
