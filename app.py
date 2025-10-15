@@ -2,7 +2,7 @@ import os
 from flask import Flask
 from extensions import pdb
 from dotenv import load_dotenv
-load_dotenv(".env")
+load_dotenv()
 
 # environmental variables for DB connection and secrets
 DATABASE_HOST = os.getenv('DATABASE_HOST')
