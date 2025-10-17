@@ -12,4 +12,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Run Gunicorn
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8001", "app:app"]
+CMD ["gunicorn", "app:app", \
+     "--workers=3", "--threads=2", \
+     "--worker-class=gthread", "--timeout=120", \
+     "--graceful-timeout=30", "--keep-alive=5", \
+     "--preload", "--bind", "0.0.0.0:8001"]
